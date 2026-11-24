@@ -57,3 +57,19 @@ window.addEventListener("scroll", () => {
         }
     });
 });
+
+// ===== TESTIMONIALS AUTO CAROUSEL =====
+(function () {
+    var grid = document.querySelector(".testimonials-grid");
+    if (!grid) return;
+    var track = document.createElement("div");
+    track.className = "testimonials-track";
+    while (grid.firstChild) track.appendChild(grid.firstChild);
+    Array.prototype.slice.call(track.children).forEach(function (card) {
+        var copy = card.cloneNode(true);
+        copy.setAttribute("aria-hidden", "true");
+        track.appendChild(copy);
+    });
+    grid.appendChild(track);
+    grid.classList.add("is-marquee");
+})();
