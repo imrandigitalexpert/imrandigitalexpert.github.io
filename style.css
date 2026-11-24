@@ -1290,3 +1290,52 @@ body {
         text-align: left;
     }
 }
+
+/* =========================================================
+   TESTIMONIALS AUTO CAROUSEL (one line, infinite scroll)
+========================================================= */
+.testimonials-grid.is-marquee {
+    display: block;
+    overflow: hidden;
+    padding: 12px 0;
+    -webkit-mask-image: linear-gradient(to right, transparent, #000 8%, #000 92%, transparent);
+    mask-image: linear-gradient(to right, transparent, #000 8%, #000 92%, transparent);
+}
+
+.testimonials-track {
+    display: flex;
+    gap: 24px;
+    width: max-content;
+    animation: testimonialsScroll 40s linear infinite;
+}
+
+.testimonials-grid.is-marquee:hover .testimonials-track {
+    animation-play-state: paused;
+}
+
+.testimonials-track .testimonial-card {
+    flex: 0 0 360px;
+    width: 360px;
+    animation: none;
+}
+
+@keyframes testimonialsScroll {
+    from { transform: translateX(0); }
+    to   { transform: translateX(calc(-50% - 12px)); }
+}
+
+@media (max-width: 650px) {
+    .testimonials-track .testimonial-card {
+        flex-basis: 280px;
+        width: 280px;
+        padding: 24px;
+    }
+    .testimonials-track {
+        animation-duration: 30s;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .testimonials-track { animation: none; }
+    .testimonials-grid.is-marquee { overflow-x: auto; }
+}
